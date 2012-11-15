@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wikimedia Foundation - Donate</title>
+<link rel="shortcut icon" href="/favicon.ico" />
+<!-- wikipedia template:
+	http://jquerymobile.com/themeroller/?ver=1.2.0&style_id=20121115-29 -->
+<link rel="stylesheet" href="css/wikipedia.min.css" />
+<link rel="stylesheet" href="css/jquery.mobile.structure-1.2.0.min.css" />
+<script src="script/jquery-1.8.2.min.js"></script>
+<script src="script/jquery.mobile-1.2.0.min.js"></script>
+<script src="script/donate.js"></script>
+</head>
+<body>
+<div data-role="page" data-theme="a"><!-- page -->
+	<div data-role="header">
+		<h1>Donations</h1>
+	</div>
+	<div data-role="content">
+		<h2>Donate for running Wikipedia</h2>
+		<p>Imagine a world in which every single person on the planet has free access to the sum of all human knowledge. That's what we're doing.</p>
+		<p>
+			How much would you like to spend?
+		</p>
+		<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br" id="buttons">
+			<button class="directDonation"></button>
+			<button class="directDonation"></button>
+			<button class="directDonation"></button>
+			<button class="directDonation"></button>
+			<button id="freeAmountButton">free amount...</button>
+		</div>
+		<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+			<label for="currency">Currency:</label>
+			<select id="currency">
+			</select>
+		</div>
+	</div>
+	<div data-role="footer">
+		<h4>Wikimedia Foundation</h4>
+	</div>
+</div><!-- page -->
+
+<!-- proceedPage dialog -->
+<div data-role="dialog" id="proceedPage" data-theme="a">
+	<div data-role="header">
+		<h1>Proceed</h1>
+	</div>
+	<div data-role="content">
+		<h2>Let's go!</h2>
+		<p>
+			You are going to donate <strong id="proceedCurrency"></strong> <strong id="proceedAmount"></strong> via PayPal. Click to proceed.
+		</p>
+		<p>
+			<a href="#" data-rel="back" data-role="button" data-inline="true" data-icon="back">Cancel</a>
+			<a href="#" data-rel="external" data-role="button" data-inline="true" data-icon="check" id="proceedDonateButton">Donate</a>
+		</p>
+	</div>
+	<div data-role="footer">
+		<h4>Wikimedia Foundation</h4>
+	</div>
+</div><!-- proceedPage dialog -->
+
+
+<!-- freeAmoutPage dialog -->
+<div data-role="dialog" id="freeAmoutPage" data-theme="a">
+	<div data-role="header">
+		<h1>Free amount</h1>
+	</div>
+	<div data-role="content">
+		<h2>Donate as much as you like!</h2>
+		<p>
+			You are going to donate in <strong id="freeAmountCurrency"></strong> via PayPal. Please enter the amount:
+		</p>
+		<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+			<input type="number" id="freeAmountAmount" min="1" size="5" />
+		</div>
+		<p>
+			<a href="#" data-rel="back" data-role="button" data-inline="true" data-icon="back">Cancel</a>
+			<a href="#" data-rel="external" data-role="button" data-inline="true" data-icon="check" id="freeAmountDonateButton">Donate</a>
+		</p>
+	</div>
+	<div data-role="footer">
+		<h4>Wikimedia Foundation</h4>
+	</div>
+</div><!-- freeAmoutPage dialog -->
+
+</body>
+</html>

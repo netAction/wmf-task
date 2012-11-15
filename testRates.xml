@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<response>
+<conversion><currency>AUD</currency><rate>1.0416</rate></conversion>
+<conversion><currency>CAD</currency><rate>0.998901</rate></conversion>
+<conversion><currency>CZK</currency><rate>0.049913</rate></conversion>
+<conversion><currency>DKK</currency><rate>0.17064</rate></conversion>
+<conversion><currency>EUR</currency><rate>1.2726</rate></conversion>
+<conversion><currency>HKD</currency><rate>0.129024</rate></conversion>
+<conversion><currency>HUF</currency><rate>0.004464</rate></conversion>
+<conversion><currency>ILS</currency><rate>0.254745</rate></conversion>
+<conversion><currency>JPY</currency><rate>0.012477</rate></conversion>
+<conversion><currency>MXN</currency><rate>0.075719</rate></conversion>
+<conversion><currency>NOK</currency><rate>0.173807</rate></conversion>
+<conversion><currency>NZD</currency><rate>0.8127</rate></conversion>
+<conversion><currency>PHP</currency><rate>0.024346</rate></conversion>
+<conversion><currency>PLN</currency><rate>0.304646</rate></conversion>
+<conversion><currency>GBP</currency><rate>1.5855</rate></conversion>
+<conversion><currency>SGD</currency><rate>0.818599</rate></conversion>
+<conversion><currency>SEK</currency><rate>0.147538</rate></conversion>
+<conversion><currency>CHF</currency><rate>1.05697</rate></conversion>
+<conversion><currency>TWD</currency><rate>0.034444</rate></conversion>
+<conversion><currency>THB</currency><rate>0.032566</rate></conversion>
+</response>
+
