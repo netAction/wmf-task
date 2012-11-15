@@ -40,9 +40,10 @@ TODO
 ----
 
 * complement the database table by symbols for the currencies like $ and flags if the specific currency is supported by PayPal or other gateways
-* add credit card payment as soon as the undependable gateway *payments.wikimedia.org/index.php/Special:GlobalCollectGateway* works.
-* language detection and translations, better wording (maybe template engine)
+* add credit card payment as soon as the undependable gateway *payments.wikimedia.org/index.php/Special:GlobalCollectGateway* works
+* better wording
+* language detection and translation could be done in jQuery or using the Mediawiki engine as it only affects *index.html*
 * guess currency depending on timezone, geo ip or something
-* more content and smaller buttons on tablets and large landscape phones, automatic redirect to desktop page if indicated
-* some phones only tested using crossbrowsertesting but should run on all jquery mobile devices
+* more content and smaller buttons on tablets and large phones in landscape, automatic redirect to desktop page if indicated
+* only some phones tested using crossbrowsertesting but should run on all jquery mobile devices
 
