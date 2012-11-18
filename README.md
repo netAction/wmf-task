@@ -39,11 +39,15 @@ The file *api.php* fetches conversion rates from remote servers or the file *tes
 TODO
 ----
 
-* complement the database table by symbols for the currencies like $ and flags if the specific currency is supported by PayPal or other gateways
-* add credit card payment as soon as the undependable gateway *payments.wikimedia.org/index.php/Special:GlobalCollectGateway* works
-* better wording
-* language detection and translation could be done in jQuery or using the Mediawiki engine as it only affects *index.html*
-* guess currency depending on timezone, geo ip or something
-* more content and smaller buttons on tablets and large phones in landscape, automatic redirect to desktop page if indicated
-* only some phones tested using crossbrowsertesting but should run on all jquery mobile devices
+*	complement the database table by columns for:
+	*	symbols for the currencies like $
+	*	information which gateway (PayPal etc) is supported
+	*	minimum donations
+	*	number of allowed decimal places
+*	add credit card payment as soon as the undependable gateway *payments.wikimedia.org/index.php/Special:GlobalCollectGateway* works
+*	better wording
+*	language detection and translation could be done in jQuery or using the Mediawiki engine as it only affects *index.html*
+*	guess currency depending on timezone, geo ip or something
+*	more content and smaller buttons on tablets and large phones in landscape, automatic redirect to desktop page if indicated
+*	only some phones tested using crossbrowsertesting but should run on all jquery mobile devices
 
