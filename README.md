@@ -44,7 +44,7 @@ TODO
 	*	information which gateway (PayPal etc) is supported
 	*	minimum donations
 	*	number of allowed decimal places
-*	add credit card payment as soon as the undependable gateway *payments.wikimedia.org/index.php/Special:GlobalCollectGateway* works
+*	fix gateway urls (campaign id)
 *	better wording
 *	language detection and translation could be done in jQuery or using the Mediawiki engine as it only affects *index.html*
 *	guess currency depending on timezone, geo ip or something

@@ -59,15 +59,29 @@ function changeCurrency() {
 
 
 // return the url paypal needs
-function paypalUrl(currency,amount) {
-	var url = 'https://www.paypal.com/cgi-bin/webscr?'+
-		'cmd=_donations'+
-		'&business=donate%40wikimedia%2eorg'+
-		'&currency_code='+currency+
-		'&amount='+amount+
-		'&item_name=DONATE';
+function generateUrl(service,currency,amount) {
+	switch (service) {
+		case 'PayPal':
+			var url = 'https://www.paypal.com/cgi-bin/webscr?'+
+				'cmd=_donations'+
+				'&business=donate%40wikimedia%2eorg'+
+				'&currency_code='+currency+
+				'&amount='+amount+
+				'&item_name=DONATE';
+		break;
+		case 'payments.wikimedia.org':
+			var url = 'https://payments.wikimedia.org/index.php/'+
+				'Special:GlobalCollectGateway?'+
+				'uselang=en&appeal=JimmyQuote-green'+
+				'&language=en&ffname=cc-vm'+
+				'&amount='+amount+
+				'&currency_code='+currency;
+		break;
+		default: // should not happen
+			var url = 'https://wikipedia.org/';
+	}
 	return url;
-} // paypalUrl
+} // generateUrl
 
 
 // activate functionality for the buttons
@@ -76,14 +90,20 @@ function prepareButtons(conversions) {
 		conversion['buttonTexts']=buttonAmounts(conversion['rate']);
 	});
 	$('#buttons').data('conversions',conversions); // store conversions
+
+	// direct donation button:
 	$('#buttons button.directDonation').click(function() {
 		$('#proceedCurrency').html($('#currency').val());
 		$('#proceedAmount').html($(this).val());
-		$('#proceedDonateButton').attr('href',
-			paypalUrl($('#currency').val(),$(this).val())
+		$('#proceedPaypalButton').attr('href',
+			generateUrl('PayPal',$('#currency').val(),$(this).val())
+		);
+		$('#proceedCreditcardButton').attr('href',
+			generateUrl('payments.wikimedia.org',$('#currency').val(),$(this).val())
 		);
 		$.mobile.changePage('#proceedPage', 'slideup', true, true);
 	});
+
 	// "free amount..." button:
 	$('#freeAmountButton').click(function() {
 		$('#freeAmountCurrency')
@@ -94,15 +114,21 @@ function prepareButtons(conversions) {
 		$.mobile.changePage('#freeAmoutPage', 'slideup', true, true);
 	});
 	// Donate button in free amount popup:
-	$('#freeAmountDonateButton').click(function(event) {
+	$('#freeAmountPaypalButton, #freeAmountCreditcardButton')
+		.click(function(event) {
 		var amount = $('#freeAmountAmount').val();
 		amount = parseInt(amount,10);
-		if (!amount || amount<1) {
+		if (!amount || amount<1) { // click not possible
 			amount='';
 			event.preventDefault();
-		} else {
-			$('#freeAmountDonateButton').attr('href',
-				paypalUrl($('#currency').val(),amount));
+		} else { // forward user to payment gateway
+			var url = generateUrl('PayPal',$('#currency').val(),amount);
+			$('#freeAmountPaypalButton').attr('href',url);
+			url = generateUrl(
+				'payments.wikimedia.org',
+				$('#currency').val(),
+				amount);
+			$('#freeAmountCreditcardButton').attr('href',url);
 		}
 		$('#freeAmountAmount').val(amount);
 	});
