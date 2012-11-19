@@ -17,13 +17,20 @@ For installation you need a server with PHP5 and MySQL. One directory below the 
 	host = "localhost"
 	database="wmf-task"
 
-In the database a table is needed:
+In the database two tables are needed:
 
 	CREATE TABLE `conversions` (
-	  `currency` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
-	  `rate` double NOT NULL,
-	  PRIMARY KEY (`currency`)
+		`currency` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+		`rate` double NOT NULL,
+		PRIMARY KEY (`currency`)
 	) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+	CREATE TABLE `options` (
+		`options_key` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+		`options_value` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		PRIMARY KEY (`options_key`)
+	) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 The file *api.php* fetches conversion rates from remote servers or the file *testRates.xml* and offers a table of conversions via json. It accepts a parameter *callback* and returns jsonP then: *api.php?callback=functionname*
 

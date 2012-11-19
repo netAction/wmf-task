@@ -10,9 +10,37 @@ private function db_connect() {
 } // db_connect
 
 
-// Update database whenever class is used
-// Could be done using a cron job too.
-function __construct() {
+private function getOption($key) {
+	$dbh=$this->db_connect();
+	$stmt = $dbh->prepare('SELECT options_value FROM options '.
+			'WHERE options_key=:key');
+	$stmt->bindParam(":key",$key);
+	$stmt->execute();
+	$result=array();
+	$result = $stmt->fetch();
+	if ($result) $result = $result["options_value"];
+	unset($stmt);
+	unset($dbh);
+	return $result;
+} // getOption
+
+
+private function setOption($key,$value) {
+	$dbh=$this->db_connect();
+	$stmt = $dbh->prepare('INSERT INTO options '.
+			'(options_key,options_value) '.
+			'VALUES(:key,:value) '.
+			'ON DUPLICATE KEY '.
+			'UPDATE options_value=:value');
+	$stmt->bindParam(":key",$key);
+	$stmt->bindParam(":value",$value);
+	$stmt->execute();
+	unset($stmt);
+	unset($dbh);
+} // setOption
+
+
+private function updateConversions() {
 	$apiUrl='http://toolserver.org/~kaldari/rates.xml';
 	// $apiUrl='testRates.xml';
 	$xml = @simplexml_load_file($apiUrl);
@@ -29,7 +57,25 @@ function __construct() {
 		$stmt->execute();
 	}
 	unset($stmt);
-	unset($dbh); // don't waste a connection, costs nothing
+	unset($dbh);
+
+	// update last update entry:
+	$this->setOption('lastUpdate',time());
+} // updateConversions
+
+
+// Update database whenever class is used and last update too old
+function __construct() {
+	// update conversions table when last update more than an hour ago:
+	$lastUpdate = $this->getOption('lastUpdate');
+	$refreshInterval = $this->getOption('refreshInterval');
+	if (!$refreshInterval) {
+		$this->setOption('refreshInterval',3600);
+		$refreshInterval = 3600;
+	}
+	if ((!$lastUpdate) || ($lastUpdate<time()-$refreshInterval)) {
+		$this->updateConversions();
+	}
 } // construct
 
 
